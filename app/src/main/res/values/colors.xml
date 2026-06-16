@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 系统原有（保留） -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- NoteLink 主题色 -->
+    <color name="nl_primary">#FF4CAF50</color>
+    <color name="nl_primary_dark">#FF388E3C</color>
+    <color name="nl_accent">#FF81C784</color>
+
+    <!-- 背景 & 表面 -->
+    <color name="nl_bg">#FF121212</color>
+    <color name="nl_surface">#FF1E1E1E</color>
+    <color name="nl_card">#FF252525</color>
+    <color name="nl_tag_bg">#1A4CAF50</color>
+
+    <!-- 文字 -->
+    <color name="nl_text_primary">#DEFFFFFF</color>
+    <color name="nl_text_secondary">#99FFFFFF</color>
+    <color name="nl_text_hint">#61FFFFFF</color>
+
+    <!-- 链接高亮 -->
+    <color name="nl_link">#FF64B5F6</color>
+</resources>

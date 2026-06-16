@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/nl_bg">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/title_calendar"
+        app:navigationIcon="@drawable/ic_back"
+        app:titleTextColor="@android:color/white" />
+
+    <!-- 月份日历 -->
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dateTextAppearance="?android:attr/textAppearanceSmall" />
+
+    <!-- 当日笔记数量提示 -->
+    <TextView
+        android:id="@+id/tv_date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:textColor="@color/nl_text_primary"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- 当日笔记列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_day_notes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_no_notes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/msg_no_notes_today"
+        android:textColor="@color/nl_text_hint"
+        android:visibility="gone" />
+
+    <!-- 底部导航 -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/nl_surface"
+        app:itemIconTint="@color/nl_nav_item_color"
+        app:itemTextColor="@color/nl_nav_item_color"
+        app:menu="@menu/bottom_nav_menu" />
+
+</LinearLayout>

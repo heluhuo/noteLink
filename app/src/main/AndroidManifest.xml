@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 网络权限（获取节日信息） -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 精确闹钟权限（Android 12+） -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 通知权限（Android 13+） -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 外部存储写入（导出功能） -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+
+        <!-- 主页 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/title_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 日历页 -->
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="false"
+            android:label="@string/title_calendar" />
+
+        <!-- 编辑页 -->
+        <activity
+            android:name=".EditActivity"
+            android:exported="false"
+            android:label="@string/title_edit"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 详情页 -->
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false"
+            android:label="@string/title_detail" />
+
+        <!-- 设置页 -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_settings" />
+
+        <!-- 每日提醒广播接收器 -->
+        <receiver
+            android:name=".ReminderReceiver"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

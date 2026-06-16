@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">NoteLink 链记</string>
+
+    <!-- 导航 -->
+    <string name="nav_home">笔记</string>
+    <string name="nav_calendar">日历</string>
+    <string name="nav_settings">设置</string>
+
+    <!-- Activity 标题 -->
+    <string name="title_main">链记</string>
+    <string name="title_calendar">日历视图</string>
+    <string name="title_edit">编辑笔记</string>
+    <string name="title_detail">笔记详情</string>
+    <string name="title_settings">设置</string>
+    <string name="title_new_note">新建笔记</string>
+
+    <!-- 输入提示 -->
+    <string name="hint_search">搜索笔记…</string>
+    <string name="hint_title">笔记标题</string>
+    <string name="hint_content">开始写作…支持 [[内链]] 语法</string>
+    <string name="hint_date">日期</string>
+    <string name="hint_category">分类</string>
+    <string name="hint_tags">标签（逗号分隔）</string>
+    <string name="hint_link_syntax">💡 使用 [[笔记标题]] 创建内链跳转</string>
+
+    <!-- 按钮文字 -->
+    <string name="action_save">保存</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_delete">删除</string>
+    <string name="action_manage_category">管理分类</string>
+    <string name="action_export_json">导出为 JSON</string>
+    <string name="action_export_txt">导出为 TXT</string>
+    <string name="action_confirm">确认</string>
+    <string name="action_cancel">取消</string>
+
+    <!-- 提示信息 -->
+    <string name="msg_empty_notes">还没有笔记，点击 + 开始创建吧</string>
+    <string name="msg_no_notes_today">当天暂无笔记</string>
+    <string name="msg_save_success">已保存</string>
+    <string name="msg_delete_confirm">确定删除这条笔记？</string>
+    <string name="msg_note_not_found">未找到目标笔记：%1$s</string>
+    <string name="msg_export_success">导出成功：%1$s</string>
+    <string name="msg_title_empty">请输入笔记标题</string>
+
+    <!-- 设置页 -->
+    <string name="section_category">分类管理</string>
+    <string name="section_reminder">每日提醒</string>
+    <string name="section_data">数据管理</string>
+    <string name="label_reminder_switch">开启每日写作提醒</string>
+    <string name="label_reminder_time">提醒时间</string>
+    <string name="default_reminder_time">21:00</string>
+
+    <!-- 日历 -->
+    <string name="label_notes_on_date">%1$s 的笔记</string>
+
+    <!-- 无障碍 -->
+    <string name="cd_new_note">新建笔记</string>
+
+    <!-- 通知 -->
+    <string name="notification_channel_id">notelink_daily</string>
+    <string name="notification_channel_name">每日提醒</string>
+    <string name="notification_title">📝 该写今天的日记了</string>
+    <string name="notification_text">记录今天的点滴，让每一天都有意义</string>
+
+    <!-- ContentProvider -->
+    <string name="provider_authority">com.example.myapplication.provider</string>
+</resources>

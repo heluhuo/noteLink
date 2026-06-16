@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- NoteLink 深色主题（夜间模式，与白天保持一致，已是深色设计） -->
+    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/nl_primary</item>
+        <item name="colorPrimaryVariant">@color/nl_primary_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/nl_accent</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="android:colorBackground">@color/nl_bg</item>
+        <item name="colorSurface">@color/nl_surface</item>
+        <item name="colorOnSurface">@color/nl_text_primary</item>
+        <item name="android:statusBarColor">@color/nl_surface</item>
+        <item name="android:navigationBarColor">@color/nl_surface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+</resources>
