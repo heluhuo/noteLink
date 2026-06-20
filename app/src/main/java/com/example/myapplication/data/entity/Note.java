@@ -2,6 +2,7 @@ package com.example.myapplication.data.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 /**
@@ -40,8 +41,17 @@ public class Note {
     @ColumnInfo(name = "updated_at")
     public long updatedAt;
 
+    /** 是否置顶 */
+    @ColumnInfo(name = "pinned")
+    public boolean pinned;
+
+    /** 图片路径列表，逗号分隔，如 /storage/emulated/0/Pictures/img1.jpg,/storage/.../img2.png */
+    @ColumnInfo(name = "image_paths")
+    public String imagePaths;
+
     public Note() {}
 
+    @Ignore
     public Note(String title, String content, String date, String category, String tags) {
         this.title = title;
         this.content = content;
@@ -50,5 +60,7 @@ public class Note {
         this.tags = tags != null ? tags : "";
         this.createdAt = System.currentTimeMillis();
         this.updatedAt = System.currentTimeMillis();
+        this.pinned = false;
+        this.imagePaths = "";
     }
 }

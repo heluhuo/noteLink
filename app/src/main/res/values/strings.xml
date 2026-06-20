@@ -64,4 +64,45 @@
 
     <!-- ContentProvider -->
     <string name="provider_authority">com.example.myapplication.provider</string>
+
+    <!-- 天气 -->
+    <string name="section_weather">今日天气</string>
+    <string name="label_weather_loading">加载天气中…</string>
+    <string name="label_weather_city_hint">城市</string>
+
+    <!-- 主题切换 -->
+    <string name="section_theme">界面风格</string>
+    <string name="label_current_theme">当前风格</string>
+    <string name="label_theme_restart_hint">切换风格即时生效</string>
+
+    <!-- 内链浮窗 -->
+    <string name="label_link_suggestions">链接到笔记</string>
+    <string name="label_no_matching_notes">无匹配笔记</string>
+
+    <!-- 城市设置 -->
+    <string name="label_weather_city">天气城市</string>
+    <string name="label_select_region">点击选择地区</string>
+    <string name="section_display">显示设置</string>
+    <string name="label_weather_failed">天气获取失败，请检查网络</string>
+
+    <!-- 排序 -->
+    <string name="label_sort">排序</string>
+    <string name="sort_by_date">按时间</string>
+    <string name="sort_by_title">按名称</string>
+    <string name="sort_by_category">按分类</string>
+
+    <!-- 快捷操作 -->
+    <string name="action_pin">置顶</string>
+    <string name="action_unpin">取消置顶</string>
+    <string name="action_change_category">修改分类</string>
+    <string name="msg_pinned">已置顶</string>
+    <string name="msg_unpinned">已取消置顶</string>
+
+    <!-- 图片 -->
+    <string name="action_insert_image">插入图片</string>
+    <string name="msg_no_gallery">未找到相册应用</string>
+
+    <!-- 返回主页 -->
+    <string name="action_home">主页</string>
+    <string name="cd_home">回到主页</string>
 </resources>

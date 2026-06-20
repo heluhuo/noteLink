@@ -14,7 +14,7 @@ import com.example.myapplication.data.entity.Note;
 /**
  * AppDatabase — Room 数据库单例
  */
-@Database(entities = {Note.class, Link.class}, version = 1, exportSchema = false)
+@Database(entities = {Note.class, Link.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
@@ -30,7 +30,8 @@ public abstract class AppDatabase extends RoomDatabase {
                             context.getApplicationContext(),
                             AppDatabase.class,
                             "notelink.db"
-                    ).build();
+                    ).fallbackToDestructiveMigration()
+                    .build();
                 }
             }
         }

@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.data.entity.Note;
+import com.example.myapplication.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +31,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private List<Note> notes = new ArrayList<>();
     private OnItemClickListener listener;
+    private ThemeHelper.Palette palette;
 
     public NoteAdapter(OnItemClickListener listener) {
         this.listener = listener;
+    }
+
+    /** 设置主题色板 — 由 Activity 在 onResume 时调用 */
+    public void setPalette(ThemeHelper.Palette palette) {
+        this.palette = palette;
+        if (!notes.isEmpty()) notifyDataSetChanged();
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -70,6 +81,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 : "";
         holder.tvPreview.setText(preview);
 
+        // 置顶标识
+        if (note.pinned) {
+            holder.tvTitle.setText("📌 " + holder.tvTitle.getText());
+        }
+
         // 标签
         if (note.tags != null && !note.tags.isEmpty()) {
             holder.tvTags.setText("🏷 " + note.tags);
@@ -78,12 +94,43 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             holder.tvTags.setVisibility(View.GONE);
         }
 
+        // 应用主题色
+        applyTheme(holder);
+
         // 点击事件
         holder.itemView.setOnClickListener(v -> listener.onItemClick(note));
         holder.itemView.setOnLongClickListener(v -> {
             listener.onItemLongClick(note, holder.getAdapterPosition());
             return true;
         });
+    }
+
+    /** 将当前主题色板应用到 item 视图 */
+    private void applyTheme(ViewHolder holder) {
+        if (palette == null) return;
+
+        // item 卡片背景
+        GradientDrawable cardBg = new GradientDrawable();
+        cardBg.setColor(palette.card);
+        cardBg.setCornerRadius(dpToPx(holder.itemView.getContext(), 8));
+        holder.itemView.setBackground(cardBg);
+
+        // 文字颜色
+        holder.tvTitle.setTextColor(palette.textPrimary);
+        holder.tvPreview.setTextColor(palette.textSecondary);
+        holder.tvDate.setTextColor(palette.textHint);
+        holder.tvTags.setTextColor(palette.textHint);
+
+        // 分类标签背景
+        GradientDrawable tagBg = new GradientDrawable();
+        tagBg.setColor(palette.tagBg);
+        tagBg.setCornerRadius(dpToPx(holder.itemView.getContext(), 4));
+        holder.tvCategory.setBackground(tagBg);
+        holder.tvCategory.setTextColor(palette.primary);
+    }
+
+    private static float dpToPx(android.content.Context ctx, float dp) {
+        return dp * ctx.getResources().getDisplayMetrics().density;
     }
 
     @Override

@@ -14,12 +14,138 @@
         app:navigationIcon="@drawable/ic_back"
         app:titleTextColor="@android:color/white" />
 
-    <!-- 月份日历 -->
-    <CalendarView
-        android:id="@+id/calendar_view"
+    <!-- 天气卡片 -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dateTextAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardBackgroundColor="@color/nl_card"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/nl_tag_bg"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <!-- 左侧：城市 + 天气 + 温度 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_weather_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/nl_text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_weather_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/nl_primary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/nl_text_secondary"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_weather_wind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/nl_text_hint"
+                    android:textSize="11sp" />
+
+                <!-- 天气降级提示 -->
+                <TextView
+                    android:id="@+id/tv_weather_degraded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="数据来源：第三方天气API，可能有延迟"
+                    android:textColor="@color/nl_text_hint"
+                    android:textSize="10sp"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <!-- 右侧：空气质量 + 提示 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="end"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/tv_weather_air"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/nl_accent"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_weather_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/nl_text_hint"
+                    android:textSize="10sp"
+                    android:maxWidth="180dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 下拉刷新包裹日历+笔记列表 -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+    <!-- 月份日历（自定义组件：支持年月快捷选择 + 笔记日期高亮） -->
+    <com.example.myapplication.MonthCalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <!-- 当日笔记数量提示 -->
     <TextView
@@ -48,6 +174,9 @@
         android:text="@string/msg_no_notes_today"
         android:textColor="@color/nl_text_hint"
         android:visibility="gone" />
+
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <!-- 底部导航 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

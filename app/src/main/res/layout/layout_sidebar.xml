@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 侧边栏内容布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/nl_surface"
+    android:fitsSystemWindows="true">
+
+    <!-- 侧边栏标题栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp"
+        android:background="@color/nl_primary_dark"
+        android:id="@+id/sidebar_header">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="日记分类"
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_category"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ 新建"
+            android:textColor="#FFFFFFFF"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- 分类+日记列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sidebar_categories"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp" />
+
+</LinearLayout>

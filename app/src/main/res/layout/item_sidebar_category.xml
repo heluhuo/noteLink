@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 侧边栏分类标题项 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- 展开/折叠箭头 -->
+    <TextView
+        android:id="@+id/tv_expand_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:text="▶"
+        android:textColor="@color/nl_text_secondary"
+        android:textSize="10sp"
+        android:gravity="center" />
+
+    <!-- 分类图标 -->
+    <TextView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:text="📁"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginStart="4dp" />
+
+    <!-- 分类名称 -->
+    <TextView
+        android:id="@+id/tv_category_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/nl_text_primary"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <!-- 笔记数量 -->
+    <TextView
+        android:id="@+id/tv_note_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/nl_text_hint"
+        android:textSize="12sp"
+        android:layout_marginEnd="4dp" />
+
+</LinearLayout>

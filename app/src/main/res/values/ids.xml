@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ThemeHelper 内部使用的 View tag key — View.setTag(key, tag) 要求 key 必须是 R.id 资源 ID -->
+    <item type="id" name="bg_role" />
+</resources>

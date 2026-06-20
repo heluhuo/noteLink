@@ -34,8 +34,20 @@ public interface NoteDao {
     // -------- 查询 --------
 
     /** 获取所有笔记（按修改时间倒序） */
-    @Query("SELECT * FROM note ORDER BY updated_at DESC")
+    @Query("SELECT * FROM note ORDER BY pinned DESC, updated_at DESC")
     List<Note> getAll();
+
+    /** 获取所有笔记，按标题排序 */
+    @Query("SELECT * FROM note ORDER BY pinned DESC, title ASC")
+    List<Note> getAllOrderByTitle();
+
+    /** 获取所有笔记，按分类排序 */
+    @Query("SELECT * FROM note ORDER BY pinned DESC, category ASC, updated_at DESC")
+    List<Note> getAllOrderByCategory();
+
+    /** 获取所有笔记，按修改时间排序 */
+    @Query("SELECT * FROM note ORDER BY pinned DESC, updated_at DESC")
+    List<Note> getAllOrderByDate();
 
     /** 按日期查询 */
     @Query("SELECT * FROM note WHERE date = :date ORDER BY updated_at DESC")

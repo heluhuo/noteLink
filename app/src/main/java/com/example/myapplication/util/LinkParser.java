@@ -2,17 +2,21 @@ package com.example.myapplication.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.myapplication.data.database.AppDatabase;
 import com.example.myapplication.data.entity.Note;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,30 +63,40 @@ public class LinkParser {
 
     // ---- 内部 ClickableSpan 实现 ----
 
+    /** 共享单线程池，用于数据库查询，避免每次点击都创建新线程池 */
+    private static final ExecutorService LINK_EXECUTOR = Executors.newSingleThreadExecutor();
+    private static final Handler MAIN_HANDLER = new Handler(Looper.getMainLooper());
+
     private static class LinkSpan extends ClickableSpan {
         private final Context context;
         private final String targetTitle;
         private final int color;
 
         LinkSpan(Context context, String targetTitle, int color) {
-            this.context = context;
+            // 使用 ApplicationContext 避免 Activity 泄漏
+            this.context = context.getApplicationContext();
             this.targetTitle = targetTitle;
             this.color = color;
         }
 
         @Override
         public void onClick(@NonNull View widget) {
-            // 在 IO 线程查询目标笔记，然后跳转
-            Executors.newSingleThreadExecutor().execute(() -> {
+            // DB 查询在 IO 线程，启动 Activity 必须回到主线程
+            LINK_EXECUTOR.execute(() -> {
                 AppDatabase db = AppDatabase.getInstance(context);
                 Note target = db.noteDao().findByTitle(targetTitle);
-                if (target != null) {
-                    Intent intent = new Intent();
-                    intent.setClassName(context, "com.example.myapplication.DetailActivity");
-                    intent.putExtra("note_id", target.id);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
+                MAIN_HANDLER.post(() -> {
+                    if (target != null) {
+                        Intent intent = new Intent(context,
+                                com.example.myapplication.DetailActivity.class);
+                        intent.putExtra("note_id", target.id);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    } else {
+                        Toast.makeText(context,
+                                "未找到笔记：" + targetTitle, Toast.LENGTH_SHORT).show();
+                    }
+                });
             });
         }
 

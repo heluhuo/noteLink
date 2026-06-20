@@ -1,147 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/nl_bg">
+    android:fitsSystemWindows="true">
 
-    <!-- 工具栏 -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="@string/title_edit"
-        app:navigationIcon="@drawable/ic_back"
-        app:titleTextColor="@android:color/white">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_save"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="8dp"
-            android:text="@string/action_save"
-            android:textColor="@android:color/white" />
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <!-- 元数据行 -->
+    <!-- ===== 主内容区 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/nl_bg">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_date"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="0dp"
+        <!-- 工具栏 -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/title_edit"
+            app:navigationIcon="@drawable/ic_menu"
+            app:titleTextColor="@android:color/white">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_home"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="8dp"
+                android:text="@string/action_home"
+                android:textColor="@android:color/white"
+                android:contentDescription="@string/cd_home" />
+
+            <LinearLayout
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_insert_image"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/action_insert_image"
+                    android:textColor="@android:color/white" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/action_save"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- 元数据行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/hint_date">
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/hint_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:textColor="@color/nl_text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View android:layout_width="8dp" android:layout_height="1dp" />
+
+            <!-- 分类下拉选择器 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_category"
+                    android:textColor="@color/nl_text_hint"
+                    android:textSize="11sp"
+                    android:paddingBottom="2dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_popup_background" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 标题 -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="4dp"
+            android:hint="@string/hint_title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_date"
+                android:id="@+id/et_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@color/nl_text_primary" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <View android:layout_width="8dp" android:layout_height="1dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_category"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="0dp"
+        <!-- 图片预览区 -->
+        <HorizontalScrollView
+            android:id="@+id/scroll_images_preview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/hint_category">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_category"
+            <LinearLayout
+                android:id="@+id/layout_images_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <!-- 内容编辑区 -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/et_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/nl_text_primary" />
+                android:minHeight="300dp"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="24dp"
+                android:gravity="top"
+                android:background="@null"
+                android:hint="@string/hint_content"
+                android:textColor="@color/nl_text_primary"
+                android:textColorHint="@color/nl_text_hint"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.5"
+                android:inputType="textMultiLine|textCapSentences" />
+
+        </ScrollView>
+
+        <!-- 内链提示条 -->
+        <TextView
+            android:id="@+id/tv_link_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/nl_tag_bg"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:text="@string/hint_link_syntax"
+            android:textColor="@color/nl_primary"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <!-- 字数统计 -->
+        <TextView
+            android:id="@+id/tv_char_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/nl_text_hint"
+            android:textSize="11sp" />
+
+        <!-- 标签 -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp"
+            android:hint="@string/hint_tags">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/nl_text_primary"
+                android:textSize="13sp"
+                android:imeOptions="actionDone" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
-    <!-- 标题 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:paddingBottom="4dp"
-        android:hint="@string/hint_title">
+    <!-- ===== 侧边栏（左侧抽屉） ===== -->
+    <include
+        layout="@layout/layout_sidebar"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/nl_text_primary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- 内容编辑区 -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <EditText
-            android:id="@+id/et_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="300dp"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="24dp"
-            android:gravity="top"
-            android:background="@null"
-            android:hint="@string/hint_content"
-            android:textColor="@color/nl_text_primary"
-            android:textColorHint="@color/nl_text_hint"
-            android:textSize="15sp"
-            android:lineSpacingMultiplier="1.5"
-            android:inputType="textMultiLine|textCapSentences" />
-
-    </ScrollView>
-
-    <!-- 内链提示条 -->
-    <TextView
-        android:id="@+id/tv_link_hint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/nl_tag_bg"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="6dp"
-        android:text="@string/hint_link_syntax"
-        android:textColor="@color/nl_primary"
-        android:textSize="12sp"
-        android:visibility="gone" />
-
-    <!-- 标签 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="8dp"
-        android:hint="@string/hint_tags">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_tags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/nl_text_primary"
-            android:textSize="13sp"
-            android:imeOptions="actionDone" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

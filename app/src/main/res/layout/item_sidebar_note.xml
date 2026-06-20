@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 侧边栏日记子项 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="56dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- 日记图标 -->
+    <TextView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:text="📝"
+        android:textSize="12sp"
+        android:gravity="center" />
+
+    <!-- 日记标题 -->
+    <TextView
+        android:id="@+id/tv_note_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/nl_text_secondary"
+        android:textSize="13sp"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:singleLine="true" />
+
+    <!-- 日记日期 -->
+    <TextView
+        android:id="@+id/tv_note_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/nl_text_hint"
+        android:textSize="11sp" />
+
+</LinearLayout>

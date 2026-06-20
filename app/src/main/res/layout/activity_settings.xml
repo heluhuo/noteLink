@@ -24,7 +24,161 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- 分类管理 -->
+            <!-- ========== 界面风格 ========== -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/section_theme"
+                android:textColor="@color/nl_primary"
+                android:textSize="13sp"
+                android:paddingBottom="4dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/nl_card"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- 日夜切换开关 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="夜间模式"
+                                android:textColor="@color/nl_text_primary"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="开启后：深色背景白字；关闭后：白色背景黑字"
+                                android:textColor="@color/nl_text_hint"
+                                android:textSize="11sp"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switch_night_mode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <!-- 分割线 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/nl_tag_bg"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_current_theme"
+                        android:textColor="@color/nl_text_secondary"
+                        android:textSize="12sp"
+                        android:paddingBottom="4dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_theme"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@color/nl_surface" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/label_theme_restart_hint"
+                        android:textColor="@color/nl_text_hint"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ========== 天气城市 ========== -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_weather_city"
+                android:textColor="@color/nl_primary"
+                android:textSize="13sp"
+                android:paddingBottom="4dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_weather_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/nl_card"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_weather_region"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="北京"
+                            android:textColor="@color/nl_text_primary"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_weather_province"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="北京市"
+                            android:textColor="@color/nl_text_hint"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="@color/nl_text_hint"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ========== 分类管理 ========== -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +217,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 每日提醒 -->
+            <!-- ========== 每日提醒 ========== -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -135,7 +289,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 数据导出 -->
+            <!-- ========== 数据导出 ========== -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

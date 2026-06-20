@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 夜间模式覆盖：背景 & 表面保持深色 -->
+    <color name="nl_bg">#FF121212</color>
+    <color name="nl_surface">#FF1E1E1E</color>
+    <color name="nl_card">#FF252525</color>
+    <color name="nl_tag_bg">#1A4CAF50</color>
+
+    <!-- 文字 — 夜间模式为浅色文字 -->
+    <color name="nl_text_primary">#DEFFFFFF</color>
+    <color name="nl_text_secondary">#99FFFFFF</color>
+    <color name="nl_text_hint">#61FFFFFF</color>
+
+    <!-- 链接高亮 -->
+    <color name="nl_link">#FF64B5F6</color>
+</resources>
